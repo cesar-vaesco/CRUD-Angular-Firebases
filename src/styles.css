@@ -1,10 +1,16 @@
 /* You can add global styles to this file, and also import other style files */
 
 body {
-    background: #3A1C71;
-    /* fallback for old browsers */
-    background: -webkit-linear-gradient(to right, #FFAF7B, #D76D77, #3A1C71);
-    /* Chrome 10-25, Safari 5.1-6 */
-    background: linear-gradient(to right, #FFAF7B, #D76D77, #3A1C71);
-    /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
+    /*Instrucción que permite mostrar nuestra imagen con opacidad*/
+    background: linear-gradient(rgba(0, 0, 0, 0.6), rgba(0, 0, 0, 0.6)), url('./assets/red.png');
+    /*Indicando la ubicación del archivo que funciona como fondo*/
+    /*background-image: url('./assets/fondo.jpg');*/
+    /*Especifica cómo se distribuyen en mosaico las imágenes de fondo una vez que se han dimensionado y colocado.*/
+    background-repeat: no-repeat;
+    /*Permite colocar la imagen al centro*/
+    background-position: center;
+    /*Especifica el tamaño de las imágenes de fondo.*/
+    background-size: cover;
+    /*Especifica la altura del área de contenido, el área de relleno o el área del borde (según el 'tamaño de la caja') de ciertas cajas.*/
+    height: 100vh;
 }
