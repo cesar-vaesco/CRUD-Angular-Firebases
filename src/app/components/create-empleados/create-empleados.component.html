@@ -24,8 +24,8 @@
                         <input type="number" class="form-control form-control-lg mt-4" formControlName="salario" placeholder="Salario">
                         <div class="mt-3">
                             <!--la ruta pasada en routerLink es la declarada en el archivo app-routing.module.ts-->
-                            <button type="text" class="btn btn-secondary btn-lg mr-4" [routerLink]="['/lista-empleados']" routerLinkActive="router-link-active">Volver</button>
-                            <button type="submit" class="btn btn-dark btn-lg">Agregar</button>
+                            <button type="text" class="btn btn-danger btn-lg mr-4" [routerLink]="['/lista-empleados']" routerLinkActive="router-link-active">Cancelar</button>
+                            <button type="submit" class="btn btn-success btn-lg">{{ aceptar }}</button>
                         </div>
                     </form>
                 </div>

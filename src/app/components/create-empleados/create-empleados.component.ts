@@ -18,6 +18,7 @@ export class CreateEmpleadosComponent implements OnInit {
   loading = false;
   id: string | null;
   titulo: string = '';
+  aceptar: string =''; 
 
   /**CONSTRUCTOR */
   constructor(
@@ -43,6 +44,7 @@ export class CreateEmpleadosComponent implements OnInit {
     this.editarEmpleado();
     if (this.id == null) {
       this.titulo = 'Agregar Empleado';
+      this.aceptar = 'Agregar'
     }
    
   }
@@ -86,8 +88,11 @@ export class CreateEmpleadosComponent implements OnInit {
 
   editarEmpleado() {
     this.titulo = 'Editar Empleado';
+    this.aceptar = 'Editar'
     if (this.id != null) {
+      this.loading = true;
       this._empleadoService.editarEmpleado(this.id).subscribe((data) => {
+        this.loading = false;
         console.log(data.payload.data()['nombre']);
         /*Método que permite llenar con los datos los campos para conocer los datos a editar*/
         this.createEmpleado.setValue({
