@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { AngularFirestore } from '@angular/fire/firestore';
 import { Observable } from 'rxjs';
 import { EmpleadoService } from '../../service/empleado.service';
+import { ToastrService } from 'ngx-toastr'; 
 
 @Component({
   selector: 'app-list-empleados',
@@ -12,7 +13,10 @@ export class ListEmpleadosComponent implements OnInit {
   empleados: any[] =[];
   public page: number;
 
-  constructor(private _empleadoService: EmpleadoService) { 
+  constructor(private _empleadoService: EmpleadoService,
+              private toastr: ToastrService
+    ) { 
+      /*Declarada dentro del constructor*/ 
     this.page = 0;
   }
 
@@ -33,6 +37,22 @@ export class ListEmpleadosComponent implements OnInit {
         })
       });
       console.log(this.empleados);
+    })
+  }
+
+  eliminarEmpleado(id: string){
+    this._empleadoService.eliminarEmpleado(id).then(()=>{
+      this.toastr.error(
+          
+        'El empleado fue eliminado con éxito...!!! ',
+        'Registro eliminado',
+        {
+          positionClass: 'toast-bottom-right'
+        }
+      ); 
+      console.log('Empleado eliminado con éxito');
+    }).catch(error =>{
+      console.log(error);
     })
   }
 

@@ -56,7 +56,8 @@ export class CreateEmpleadosComponent implements OnInit {
       .agregarEmpleado(empleado)
       .then(() => {
         this.toastr.success(
-          'El empleado fue registrado con éxito...!!!',
+          
+          'El empleado '+ empleado.nombre +' fue registrado con éxito...!!! ',
           'Empleado registrado',
           {
             positionClass: 'toast-bottom-right',
