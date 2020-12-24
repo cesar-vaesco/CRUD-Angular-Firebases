@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
-import { Router } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { ToastrService } from 'ngx-toastr';
 import { EmpleadoService } from '../../service/empleado.service';
 
@@ -16,6 +16,7 @@ export class CreateEmpleadosComponent implements OnInit {
   createEmpleado: FormGroup;
   submitted = false;
   loading = false;
+  id:string | null;
 
   /**CONSTRUCTOR */
   constructor(
@@ -23,7 +24,8 @@ export class CreateEmpleadosComponent implements OnInit {
     /*Se importa el servicio */
     private _empleadoService: EmpleadoService,
     private router: Router,
-    private toastr: ToastrService
+    private toastr: ToastrService,
+    private aRoute: ActivatedRoute
   ) {
     this.createEmpleado = this.fb.group({
       nombre: ['', Validators.required],
@@ -31,6 +33,9 @@ export class CreateEmpleadosComponent implements OnInit {
       documento: ['', Validators.required],
       salario: ['', Validators.required],
     });
+    /*Variable que permite tomar el id que se muestra en la url cuando consultamos un registro para editar*/ 
+    this.id = this.aRoute.snapshot.paramMap.get('id');
+    console.log(this.id);
   }
 
   ngOnInit(): void {}
