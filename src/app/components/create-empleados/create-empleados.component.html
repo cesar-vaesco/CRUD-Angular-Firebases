@@ -4,7 +4,11 @@
         <div class="col-lg-6 offset-lg-3 mt-4">
             <div class="card text-center">
                 <div class="card-body">
-                    <h3>Agregar empleado</h3>
+                    <h3>Agregar empleado
+                        <div *ngIf="loading" class="spinner-border float-right" role="status">
+                            <span class="sr-only"></span>
+                        </div>
+                    </h3>
                     <span *ngIf="submitted && createEmpleado.invalid" class="badge badge-danger">TODOS LOS CAMPOS SON OBLIGATORIOS</span>
                     <!--Conectando el formulario con create-empeadoscomponente.ts -->
                     <form class="mt-4" [formGroup]="createEmpleado" (ngSubmit)="agregarEmpleado()">
@@ -16,7 +20,7 @@
                                 <input type="text" class="form-control form-control-lg" formControlName="apellido" placeholder="Apellido">
                             </div>
                         </div>
-                        <input type="text" class="form-control form-control-lg mt-4" formControlName="documento" placeholder="Documento">
+                        <input type="number" class="form-control form-control-lg mt-4" formControlName="documento" placeholder="No.Indentificación">
                         <input type="number" class="form-control form-control-lg mt-4" formControlName="salario" placeholder="Salario">
                         <div class="mt-3">
                             <!--la ruta pasada en routerLink es la declarada en el archivo app-routing.module.ts-->

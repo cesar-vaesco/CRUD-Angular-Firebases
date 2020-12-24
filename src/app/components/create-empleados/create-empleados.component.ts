@@ -14,8 +14,8 @@ export class CreateEmpleadosComponent implements OnInit {
    * PErmite conectar con el formulario del html
    */
   createEmpleado: FormGroup;
-
   submitted = false;
+  loading = false;
 
   /**CONSTRUCTOR */
   constructor(
@@ -51,17 +51,24 @@ export class CreateEmpleadosComponent implements OnInit {
       fechaCreacion: new Date(),
       fechaActualizacion: new Date(),
     };
+    this.loading = true;
     this._empleadoService
       .agregarEmpleado(empleado)
       .then(() => {
-        this.toastr.success('El empleado fue registrado con éxito...!!!', 'Empleado registrado',{
-          positionClass:'toast-bottom-right'
-        });
+        this.toastr.success(
+          'El empleado fue registrado con éxito...!!!',
+          'Empleado registrado',
+          {
+            positionClass: 'toast-bottom-right',
+          }
+        );
+        this.loading = false;
         console.log('Empleado registrado con éxito!!!!');
-        this.router.navigate(['/lista-empleados'])
+        this.router.navigate(['/lista-empleados']);
       })
       .catch((error) => {
         console.log(error);
+        this.loading = false;
       });
   }
 }
