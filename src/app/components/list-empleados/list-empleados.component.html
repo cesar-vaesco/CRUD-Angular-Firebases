@@ -14,17 +14,18 @@
                     </tr>
                 </thead>
                 <tbody>
-                    <tr *ngFor="let empleado of empleados">
-                        <td>{{ empleado.nombre }}</td>
-                        <td>{{ empleado.apellido }}</td>
+                    <tr *ngFor="let empleado of empleados | paginate: { itemsPerPage: 5, currentPage: page }">
+                        <td>{{ empleado.nombre | titlecase}}</td>
+                        <td>{{ empleado.apellido | titlecase }}</td>
                         <td>No. {{ empleado.documento }}</td>
-                        <td>$ {{ empleado.salario }}.00</td>
+                        <td>{{ empleado.salario | currency }}</td>
                         <td><i class="fas fa-edit fa-lg text-info mr-2"></i>
                             <i class="fas fa-trash-restore fa-lg text-danger"></i>
                         </td>
                     </tr>
                 </tbody>
             </table>
+            <pagination-controls (pageChange)="page = $event" previousLabel="Anterior" nextLabel="Siguiente" responsive="true"></pagination-controls>
 
         </div>
     </div>

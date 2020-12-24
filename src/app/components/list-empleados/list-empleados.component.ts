@@ -10,9 +10,10 @@ import { EmpleadoService } from '../../service/empleado.service';
 })
 export class ListEmpleadosComponent implements OnInit {
   empleados: any[] =[];
-
+  public page: number;
 
   constructor(private _empleadoService: EmpleadoService) { 
+    this.page = 0;
   }
 
   ngOnInit(): void {
