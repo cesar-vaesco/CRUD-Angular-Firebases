@@ -16,7 +16,8 @@ export class CreateEmpleadosComponent implements OnInit {
   createEmpleado: FormGroup;
   submitted = false;
   loading = false;
-  id:string | null;
+  id: string | null;
+  titulo: string = '';
 
   /**CONSTRUCTOR */
   constructor(
@@ -33,12 +34,18 @@ export class CreateEmpleadosComponent implements OnInit {
       documento: ['', Validators.required],
       salario: ['', Validators.required],
     });
-    /*Variable que permite tomar el id que se muestra en la url cuando consultamos un registro para editar*/ 
+    /*Variable que permite tomar el id que se muestra en la url cuando consultamos un registro para editar*/
     this.id = this.aRoute.snapshot.paramMap.get('id');
-    console.log(this.id);
+    //console.log(this.id);
   }
 
-  ngOnInit(): void {}
+  ngOnInit(): void {
+    this.editarEmpleado();
+    if (this.id == null) {
+      this.titulo = 'Agregar Empleado';
+    }
+   
+  }
 
   agregarEmpleado() {
     /*Se cambia el estado de submmited*/
@@ -61,8 +68,7 @@ export class CreateEmpleadosComponent implements OnInit {
       .agregarEmpleado(empleado)
       .then(() => {
         this.toastr.success(
-          
-          'El empleado '+ empleado.nombre +' fue registrado con éxito...!!! ',
+          'El empleado ' + empleado.nombre + ' fue registrado con éxito...!!! ',
           'Empleado registrado',
           {
             positionClass: 'toast-bottom-right',
@@ -76,5 +82,21 @@ export class CreateEmpleadosComponent implements OnInit {
         console.log(error);
         this.loading = false;
       });
+  }
+
+  editarEmpleado() {
+    this.titulo = 'Editar Empleado';
+    if (this.id != null) {
+      this._empleadoService.editarEmpleado(this.id).subscribe((data) => {
+        console.log(data.payload.data()['nombre']);
+        /*Método que permite llenar con los datos los campos para conocer los datos a editar*/
+        this.createEmpleado.setValue({
+          nombre: data.payload.data()['nombre'],
+          apellido: data.payload.data()['apellido'],
+          documento: data.payload.data()['documento'],
+          salario: data.payload.data()['salario'],
+        });
+      });
+    }
   }
 }
