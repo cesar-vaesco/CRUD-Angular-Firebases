@@ -36,14 +36,13 @@ export class ListEmpleadosComponent implements OnInit {
           ...element.payload.doc.data()
         })
       });
-      console.log(this.empleados);
+     // console.log(this.empleados);
     })
   }
 
   eliminarEmpleado(id: string){
     this._empleadoService.eliminarEmpleado(id).then(()=>{
       this.toastr.error(
-          
         'El empleado fue eliminado con éxito...!!! ',
         'Registro eliminado',
         {

@@ -3,7 +3,8 @@
         <div class="card-body">
             <span class="h3">Listado de empleados</span>
             <button class="btn btn-dark btn-lg float-right" [routerLink]="['/crear-empleado']" routerLinkActive="router-link-active">Agregar</button>
-            <table class="table table-striped table-hover mt-5">
+            <h5 style="margin-top: 30px;  text-align: center;" *ngIf="empleados.length == 0">No hay registros que mostrar</h5>
+            <table *ngIf="empleados.length > 0" class="table table-striped table-hover mt-5">
                 <thead class="thead-green">
                     <tr>
                         <th>Nombre</th>
@@ -25,7 +26,7 @@
                     </tr>
                 </tbody>
             </table>
-            <pagination-controls (pageChange)="page = $event" previousLabel="Anterior" nextLabel="Siguiente"></pagination-controls>
+            <pagination-controls *ngIf="empleados.length > 0" (pageChange)="page = $event" previousLabel="Anterior" nextLabel="Siguiente"></pagination-controls>
 
         </div>
     </div>
