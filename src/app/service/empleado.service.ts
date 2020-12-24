@@ -15,6 +15,6 @@ export class EmpleadoService {
      return this.firestore.collection('empleados').add(empleado);
    }
    getEmpleados(): Observable<any>{
-      return this.firestore.collection('empleados').snapshotChanges();
+      return this.firestore.collection('empleados', ref => ref.orderBy('fechaCreacion', 'asc')).snapshotChanges();
    }
 }
