@@ -9,7 +9,7 @@
                     <tr>
                         <th>Nombre</th>
                         <th>Apellido</th>
-                        <th>Documento</th>
+                        <th>Número de empleado</th>
                         <th>Salario</th>
                         <th></th>
                     </tr>
@@ -20,7 +20,7 @@
                         <td>{{ empleado.apellido | titlecase }}</td>
                         <td>No. {{ empleado.documento }}</td>
                         <td>{{ empleado.salario | currency }}</td>
-                        <td><i class="fas fa-edit fa-lg text-info mr-2"></i>
+                        <td><i class="fas fa-edit fa-lg text-info mr-2" [routerLink]="['/edit-empleado/', empleado.id]"></i>
                             <i (click)="eliminarEmpleado(empleado.id)" class="fas fa-trash-restore fa-lg text-danger"></i>
                         </td>
                     </tr>

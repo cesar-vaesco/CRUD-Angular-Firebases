@@ -17,8 +17,11 @@ export class EmpleadoService {
    getEmpleados(): Observable<any>{
       return this.firestore.collection('empleados', ref => ref.orderBy('fechaCreacion', 'asc')).snapshotChanges();
    }
-
    eliminarEmpleado(id:string): Promise<any>{
   return this.firestore.collection('empleados').doc(id).delete();
    }
+
+  /* editarEmpleado(id:string):Promise<any>{
+     return this.firestore.collection('empleados').snapshotChanges();
+   }*/
 }

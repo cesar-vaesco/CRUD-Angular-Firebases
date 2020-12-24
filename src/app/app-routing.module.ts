@@ -8,6 +8,8 @@ const routes: Routes = [
   {path:'', redirectTo: 'lista-empleados', pathMatch: 'full'}, 
   {path:'lista-empleados', component: ListEmpleadosComponent},
   {path:'crear-empleado', component: CreateEmpleadosComponent},
+  /**Se indica al pasar el id que el parametro va a ser dinamico, acorde al empelado que se quiera boorar de la base de datos */
+  {path:'edit-empleado/:id', component: CreateEmpleadosComponent},
   /*En caso de no encontrar o ingresar una url erronea redirecciona a la vista lista-empleados*/ 
   {path:'**', redirectTo: 'lista-empleados', pathMatch: 'full'}, 
 ];

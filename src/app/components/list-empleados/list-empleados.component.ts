@@ -43,6 +43,7 @@ export class ListEmpleadosComponent implements OnInit {
   eliminarEmpleado(id: string){
     this._empleadoService.eliminarEmpleado(id).then(()=>{
       this.toastr.error(
+      
         'El empleado fue eliminado con éxito...!!! ',
         'Registro eliminado',
         {
